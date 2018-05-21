@@ -19,8 +19,6 @@
     <link href="{{.Site.BaseURL}}css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <base href="{{ if getenv "CONTEXT" }}{{ cond (eq "production" (getenv "CONTEXT")) (getenv "URL") (getenv "DEPLOY_PRIME_URL") }}{{ else }}{{ $.Site.BaseURL }}{{ end }}">
-
     <!-- Favicon & Appicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{.Site.BaseURL}}favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{{.Site.BaseURL}}favicon/apple-icon-60x60.png">
