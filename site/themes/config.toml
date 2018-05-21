@@ -1,0 +1,23 @@
+theme="materialcss-design"
+baseurl = "www.smile-feedback.de"
+languageCode = "de-de"
+title = "Feedback ganz einfach - give a smile"
+MetaDataFormat = "toml"
+paginate = 9 # To specify a multiple of 3
+disqusShortname = "pubu" # optional
+copyright = "© 2018 www.smile-feedback.de"
+
+[params]
+  description = "Your Site Description" # optional
+  twitter = "Your Twitter Name" # optional
+  gitlab = "Your Gitlab Name" # optional
+  github = "Your Github Name" # optional
+  facebook = "Your facebook Name" # optional
+  gplus = "Your Google+ profile name" # optional
+  linkedin = "Your LinkedIn Name" # optional
+  headerCover = "images/headerCover.png" # optional
+  footerCover = "images/footerCover.png" # optional
+  googleAnalyticsUserID = "Your Analytics User Id" # optional
+
+[permalinks]
+  post = "/:year/:month/:day/:title/" # optional

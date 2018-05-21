@@ -1,9 +1,29 @@
 {{ define "main" }}
 
-<h1>Hugo with Gulp, PostCSS and Webpack</h1>
-
-<p>
-  Hooray 🎉 - you've built this with <a href="https://github.com/netlify/victor-hugo">Victor-Hugo</a>!
-</p>
+<div class="row">
+  <div class="col s12">
+  <h1>Und so einfach geht das!</h1>
+  <p class="flow-text">Jetzt E-Mail-Adresse eintragen und Feedback-Code sichern.<br>Den Feedback-Code können Sie überall ganz bequem platzieren und erhalten Ihr Feedback.</p>
+  </div>
+  <form>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input type="email" name="email-fld" value="" placeholder="bitte E-Mail-Adresse eintragen">
+        <label for="no_table_email">E-Mail-Adresse</label>
+      </div>
+      <div class="col s12">
+      {{=form.custom.submit}}
+      </div>
+    </div>
+  </form>
+  <div class="col s12">
+    <h2>Was ist ein Feedback-Code?</h2>
+    <p class="flow-text">
+    Ein Feedback-Code ist ein QR-Code der von Interessenten gesannt werden kann, um im Anschluss ein Feedback in Form einer Bewertung für Sie zu hinterlassen. 
+    </p>
+  </div>
+  
+</div>
 
 {{end}}
