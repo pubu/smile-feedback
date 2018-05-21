@@ -1,10 +1,16 @@
 baseurl = "/"
+DefaultContentLanguage = "de"
 languageCode = "de-de"
 languageLang = "de"
-title = "Feedback ganz einfach - give a smile"
+
+[languages]
+    [languages.de]
+        title = "Feedback ganz einfach - give a smile"
 
 # RSS, categories and tags disabled for an easy start
 # See configuration options for more details: 
 # https://gohugo.io/getting-started/configuration/#toml-configuration
 disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
+[permalinks]
+    service = "/services/:filename/"

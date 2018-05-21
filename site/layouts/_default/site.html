@@ -44,7 +44,7 @@
     {{ block "header" . }}{{ partial "header" . }}{{end}}
     
     <div class="container">
-    {{ block "main" . }}{{end}}
+        {{ .Content }}
     </div>
 
     {{ block "footer" . }}{{ partial "footer" . }}{{end}}
