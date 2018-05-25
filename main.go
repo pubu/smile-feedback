@@ -1,10 +1,5 @@
 package main
 
-/*
-https://api.backendless.com/<application-id>/<api-key>/<operation-specific-path>
-
-*/
-
 import (
 	"encoding/json"
 	"fmt"
