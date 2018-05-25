@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "make build && npm run build"
   functions = "functions"
   publish = "dist"
 
