@@ -1,8 +1,9 @@
+package main
+
 /*
 https://api.backendless.com/<application-id>/<api-key>/<operation-specific-path>
 
 */
-package main
 
 import (
 	"encoding/json"
