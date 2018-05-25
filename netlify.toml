@@ -1,6 +1,6 @@
 [build]
-  command = "make build && npm run build"
-  functions = "lambda"
+  command = "make build"
+  functions = "functions"
   publish = "dist"
 
 [build.environment]
