@@ -1,6 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "make build && npm run build"
+  functions = "lambda"
   publish = "dist"
+
+[build.environment]
+  # Change this path with the path to your repository
+  GO_IMPORT_PATH = "github.com/pubu/victor-hugo"
 
 [context.deploy-preview]
   command = "npm run build-preview"
