@@ -1,6 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && make build"
+  functions = "functions"
   publish = "dist"
+
+[build.environment]
+  # Change this path with the path to your repository
+  GO_IMPORT_PATH = "github.com/pubu/smile-feedback"
 
 [context.deploy-preview]
   command = "npm run build-preview"
