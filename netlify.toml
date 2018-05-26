@@ -1,5 +1,5 @@
 [build]
-  command = "make build && npm run build"
+  command = "make build && hugo -s site -d dist"
   functions = "functions"
   publish = "dist"
 
