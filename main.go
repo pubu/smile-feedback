@@ -31,7 +31,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	from := mail.NewEmail("smile-feedback ", "info@smile-feedback.de")
 	subject := "www.smile-feedback.de - Ihr Feedback-Code"
 	to := mail.NewEmail("Paul", "p.dircksen@gmail.com")
-	plainTextContent := ""
+	plainTextContent := "Hallo, vielen Dank für die Nutzung von www.smile-feedback.de. Über den nachfolgenden Link gelangen Sie zu Ihrem persönlichen Bereich. Auf der Seite können Sie den personalisierten Feedback-Code einsehen und herunterladen."
 	htmlContent := "<html><style>body{font-family: arial;}</style><body>Hallo,<br>vielen Dank für die Nutzung von www.smile-feedback.de.<br><br>Über den nachfolgenden Link gelangen Sie zu Ihrem persönlichen Bereich.<br>Auf der Seite können Sie den personalisierten Feedback-Code einsehen und herunterladen.</body></html>"
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
 	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
