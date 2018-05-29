@@ -63,7 +63,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		return events.APIGatewayProxyResponse{}, err
 	}
 	// create base64 string
-	uEnc := b64.URLEncoding.EncodeToString(png)
+	uEnc := b64.StdEncoding.EncodeToString(png)
 	// handle token - use backendless to create record
 	createTokenRecord(emailStr, uEnc, token.String())
 	// create mailing - use sendgrid
