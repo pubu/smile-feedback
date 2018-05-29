@@ -1,15 +1,19 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 
 	b64 "encoding/base64"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/rs/xid"
 	sendgrid "github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 	qrcode "github.com/skip2/go-qrcode"
@@ -21,12 +25,47 @@ type Response struct {
 	Qrcode  string `json:"qr"`
 }
 
+func createTokenRecord(email string, qrcode string, token string) {
+	url := fmt.Sprintf("https://api.backendless.com/%s/%s/data/simplefeedback", os.Getenv("BL_APP_KEY"), os.Getenv("BL_API_KEY"))
+	fmt.Println("URL:>", url)
+
+	var recordJSONStr string
+	recordJSONStr = fmt.Sprintf(`{"email":"%s", "qr_code_base64":"%s", "token":"%s"}`, email, qrcode, token)
+	var jsonStr = []byte(recordJSONStr)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	fmt.Println("response Status:", resp.Status)
+	fmt.Println("response Headers:", resp.Header)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("response Body:", string(body))
+
+}
+
 // Handler for output
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	fmt.Println("Received body: ", request.Body)
 
+	token := xid.New()
+	var emailStr string
+	emailStr = "p.dircksen@gmail.com"
+	// create qr code
+	url := fmt.Sprintf("https://www.smile-feedback.de/vote/%s", token)
+	png, err := qrcode.Encode(url, qrcode.Medium, 256)
+	if err != nil {
+		return events.APIGatewayProxyResponse{}, err
+	}
+	// create base64 string
+	uEnc := b64.URLEncoding.EncodeToString(png)
 	// handle token - use backendless to create record
-
+	createTokenRecord(emailStr, uEnc, token.String())
 	// create mailing - use sendgrid
 	from := mail.NewEmail("smile-feedback ", "info@smile-feedback.de")
 	subject := "www.smile-feedback.de - Ihr Feedback-Code"
@@ -44,13 +83,6 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		fmt.Println(response.Body)
 		fmt.Println(response.Headers)
 	}
-	// create qr code
-	png, err := qrcode.Encode("https://www.smile-feedback.de/vote/1234", qrcode.Medium, 256)
-	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
-	}
-	// create base64 string
-	uEnc := b64.URLEncoding.EncodeToString(png)
 
 	r := Response{
 		Message: "Hello from golang function",
