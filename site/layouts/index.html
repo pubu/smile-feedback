@@ -5,7 +5,7 @@
   <h1>Und so einfach geht das!</h1>
   <p class="flow-text">Jetzt E-Mail-Adresse eintragen und Feedback-Code sichern.<br>Den Feedback-Code können Sie überall ganz bequem platzieren und erhalten Ihr Feedback.</p>
   </div>
-  <form>
+  <form id="emailForm">
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
@@ -13,7 +13,7 @@
         <label for="email-fld">E-Mail-Adresse</label>
       </div>
       <div class="col s12">
-      <input class="btn btn-primary" type="submit" value="Senden">
+      <input class="btn btn-primary" type="button" id="submitButton" value="Senden">
       </div>
     </div>
   </form>
@@ -25,11 +25,4 @@
   </div>
   
 </div>
-
-<script>
-  $.get('https://optimistic-tereshkova-a5002d.netlify.com/.netlify/functions/service', function(msg){
-    console.log(msg);
-  })
-</script>
-
 {{end}}
