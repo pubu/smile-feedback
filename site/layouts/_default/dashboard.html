@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="{{ $.Site.Language.Lang }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ $.Site.Title }}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="smile-feedback.de">
+		<meta name="description" content="Holen Sie sich das Feedback was Sie brauchen. Ganz einfach und  bequem.">
+		<meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="{{.Site.BaseURL}}/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="{{ if getenv "CONTEXT" }}{{ cond (eq "production" (getenv "CONTEXT")) (getenv "URL") (getenv "DEPLOY_PRIME_URL") }}{{ else }}{{ $.Site.BaseURL }}{{ end }}">
+
+    <!-- Favicon & Appicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{{.Site.BaseURL}}favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{.Site.BaseURL}}favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{.Site.BaseURL}}favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{.Site.BaseURL}}favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{.Site.BaseURL}}favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{.Site.BaseURL}}favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{.Site.BaseURL}}favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{.Site.BaseURL}}favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{.Site.BaseURL}}favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{.Site.BaseURL}}favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{.Site.BaseURL}}favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{.Site.BaseURL}}favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{.Site.BaseURL}}favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{.Site.BaseURL}}favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{.Site.BaseURL}}favicon/ms-icon-144x144.png">
+  </head>
+  <body class="grey lighten-4">
+
+    {{ block "header" . }}{{ partial "header" . }}{{end}}
+    
+    <div class="container">
+        {{ .Content }}
+        <div class="row dashboard-data">
+        </div>
+    </div>
+
+    {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+
+    <!--Import jQuery before materialize.js-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    
+    <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+    <script>
+      var WebFontConfig = {
+        google: { families: [ 'Roboto:400,300,500:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+    <!-- custom js -->
+    <script src="{{.Site.BaseURL}}/js/dashboard.js"></script>
+  </body>
+</html>

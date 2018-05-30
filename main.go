@@ -21,8 +21,7 @@ import (
 
 // Response message
 type Response struct {
-	Message string `json:"msg"`
-	Qrcode  string `json:"qr"`
+	Url string `json:"url"`
 }
 
 func createTokenRecord(email string, qrcode string, token string) {
@@ -84,9 +83,9 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		fmt.Println(response.Headers)
 	}
 
+	redirectURL := fmt.Sprintf("https://www.smile-feedback.de/dashboard/%s", token)
 	r := Response{
-		Message: "Hello from golang function",
-		Qrcode:  uEnc,
+		Url: redirectURL,
 	}
 	rbytes, err := json.Marshal(r)
 	if err != nil {
