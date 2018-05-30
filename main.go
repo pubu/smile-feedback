@@ -56,7 +56,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	var emailStr string
 	emailStr = "p.dircksen@gmail.com"
 	// create qr code
-	url := fmt.Sprintf("https://www.smile-feedback.de/vote/%s", token)
+	url := fmt.Sprintf("https://www.smile-feedback.de/vote/?t=%s", token)
 	png, err := qrcode.Encode(url, qrcode.Medium, 256)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
@@ -83,7 +83,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		fmt.Println(response.Headers)
 	}
 
-	redirectURL := fmt.Sprintf("https://www.smile-feedback.de/dashboard/%s", token)
+	redirectURL := fmt.Sprintf("https://www.smile-feedback.de/dashboard/?t=%s", token)
 	r := Response{
 		Url: redirectURL,
 	}
